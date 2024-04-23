@@ -25,5 +25,20 @@ public class UsuarioControle {
         UsuarioService usuarioService = new UsuarioService();
         return usuarioService.consultar(usuario);
     }
+     
+     public boolean excluir(Usuario usuario) throws SQLException{
+        UsuarioService usuarioService = new UsuarioService();
+        return usuarioService.excluir(usuario);
+    }
+     
+     public Usuario consultarCodigo(Usuario usuario) throws SQLException {
+        UsuarioService usuarioService = new UsuarioService();
+        return usuarioService.consultarCodigo(usuario);
+    }
+     
+     public boolean atualizar(Usuario usuario) throws SQLException{
+         UsuarioService usuarioService = new UsuarioService();
+         return usuarioService.atualizar(usuario);
+     }
     
 }

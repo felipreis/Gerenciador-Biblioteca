@@ -25,4 +25,19 @@ public class UsuarioService {
         UsuarioDao usuarioDao = new UsuarioDao();
         return usuarioDao.consultar(usuario);
     }
+    
+    public boolean excluir(Usuario usuario) throws SQLException{
+        UsuarioDao usuarioDao = new UsuarioDao();
+        return usuarioDao.excluir(usuario);
+    }
+    
+    public Usuario consultarCodigo(Usuario usuario) throws SQLException{
+        UsuarioDao usuarioDao = new UsuarioDao();
+        return usuarioDao.consultarCodigo(usuario);
+    }
+    
+    public boolean atualizar(Usuario usuario) throws SQLException{
+        UsuarioDao usuarioDao = new UsuarioDao();
+        return usuarioDao.atualizar(usuario);
+    }
 }
