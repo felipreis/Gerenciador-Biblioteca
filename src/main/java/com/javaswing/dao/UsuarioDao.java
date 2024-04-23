@@ -63,4 +63,65 @@ public class UsuarioDao {
         
         return listUsuario;
     }
+    
+     public boolean excluir(Usuario usuario) throws SQLException {
+        Conexao conexao = new Conexao();
+        Connection connection = conexao.conectar();
+        boolean retorno = false;
+        String query = "DELETE FROM usuario where Codigo = " + usuario.getCodigo();
+        try {
+            Statement statement = connection.createStatement();
+            retorno =  statement.execute(query);
+        }catch (SQLException ex) {
+            retorno = true;
+        } finally {
+            conexao.desconectar(connection);
+        }
+        
+        return retorno;
+    }
+     
+     public Usuario consultarCodigo(Usuario usuario) throws SQLException {
+        
+        Usuario usuarioRetorno = new Usuario();   
+        Conexao conexao = new Conexao();
+        Connection connection = conexao.conectar();
+        String query = "SELECT * FROM usuario where codigo = " + usuario.getCodigo();
+        Statement statement =  connection.createStatement();
+        ResultSet retorno =  statement.executeQuery(query);
+        
+          
+        while (retorno.next()){
+              
+                usuarioRetorno.setCodigo(retorno.getInt("codigo"));
+                usuarioRetorno.setNome(retorno.getString("Nome"));
+                usuarioRetorno.setTelefone(retorno.getString("Telefone"));
+                usuarioRetorno.setCidade(retorno.getString("Cidade"));
+                
+        }
+        
+        return usuarioRetorno;
+    }
+     
+     
+     public boolean atualizar(Usuario usuario) throws SQLException {
+        Conexao conexao = new Conexao();
+        Connection connection = conexao.conectar();
+        boolean retorno = false;
+        String query = "UPDATE USUARIO SET "
+            + "Nome = '" + usuario.getNome() + "', "
+            + "Telefone = '" + usuario.getTelefone() + "', "
+            + "Cidade = '" + usuario.getCidade() + "' "
+            + "WHERE codigo = " + usuario.getCodigo();       
+        try {
+            Statement statement = connection.createStatement();
+            retorno =  statement.execute(query);
+        }catch (SQLException ex) {
+            retorno = true;
+        } finally {
+            conexao.desconectar(connection);
+        }
+        
+        return retorno;
+    }
 }
