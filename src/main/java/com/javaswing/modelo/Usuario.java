@@ -13,6 +13,7 @@ public class Usuario {
             private String nome;
             private String telefone;
             private String cidade;
+            private int tipo;
 
             public Integer getCodigo() {
                 return codigo;
@@ -44,5 +45,13 @@ public class Usuario {
 
             public void setCidade(String cidade) {
                 this.cidade = cidade;
+            }
+            
+            public int getTipo(){
+                return this.tipo;
+            }
+            
+            public void setTipo(int tipo){
+                this.tipo = tipo;
             }
 }

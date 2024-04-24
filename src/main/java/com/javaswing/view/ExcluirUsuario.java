@@ -47,7 +47,7 @@ public class ExcluirUsuario extends javax.swing.JFrame {
         btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("EXCLUSÃO DE LIVROS");
+        setTitle("EXCLUSÃO DE USUARIOS");
         setSize(new java.awt.Dimension(500, 500));
 
         jLabel1.setText("Código ");

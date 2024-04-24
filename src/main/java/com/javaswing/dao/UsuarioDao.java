@@ -23,11 +23,11 @@ public class UsuarioDao {
         Conexao conexao = new Conexao();
         Connection connection = conexao.conectar();
                 
-        String query = "INSERT INTO usuario (nome,telefone,cidade) values (" +
+        String query = "INSERT INTO usuario (nome,telefone,cidade,tipo) values (" +
                 "'" +   usuario.getNome()  + "'," +
                 "'" +   usuario.getTelefone()   + "'," +
-                "'" +   usuario.getCidade() + "'" +
-                 ")";
+                "'" +   usuario.getCidade() + "'," +
+                usuario.getTipo()+ ")";
         
         
         
