@@ -5,6 +5,7 @@
 package com.javaswing.dao;
 
 
+import com.javaswing.modelo.Emprestimo;
 import com.javaswing.modelo.Livro;
 import com.javaswing.modelo.Usuario;
 import java.sql.Connection;
@@ -20,7 +21,7 @@ import java.util.List;
 public class EmprestimoDao  {
 
   
-    public boolean emprestarLivro(Usuario usuario, Livro livro) {
+    public boolean emprestarLivro(Emprestimo emprestimo) {
         
         Conexao conexao = new Conexao();
         Connection connection = conexao.conectar();
@@ -28,11 +29,11 @@ public class EmprestimoDao  {
         LocalDate dataDevolucao = null;
                 
         String query = "INSERT INTO emprestimo (usuario,livro,saida,devolucao,status) values (" +
-                "'" +   usuario.getCodigo()  + "'," +
-                "'" +   livro.getCodigo()   + "'," +
-                "'" +   dataAtual   + "'," +
-                "'" +   dataDevolucao + "'," +
-                usuario.getTipo()+ ")";
+                "'" +   emprestimo.getCodUsuario()  + "'," +
+                "'" +   emprestimo.getCodLivro()   + "'," +
+                "'" +   emprestimo.getDataAtual()   + "'," +
+                "'" +   emprestimo.getDataDevolucao() + "'," +
+                emprestimo.getStatus()+ ")";
         try {
             Statement statement = connection.createStatement();
             statement.execute(query);
