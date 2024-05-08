@@ -31,7 +31,7 @@ public class EmprestimoDao  {
                 "'" +   emprestimo.getCodUsuario()  + "'," +
                 "'" +   emprestimo.getCodLivro()   + "'," +
                 "'" +   emprestimo.getDataAtualString() + "'," +
-                emprestimo.getDataDevolucaoString()+ ")";
+                "'" + emprestimo.getDataDevolucaoString()+ "'" + ")";
         
         
         
