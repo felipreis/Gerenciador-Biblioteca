@@ -10,6 +10,7 @@ import com.javaswing.modelo.Livro;
 import com.javaswing.modelo.Usuario;
 import com.javaswing.service.Util;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
@@ -40,10 +41,10 @@ public class EmprestarLivroView extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        txtConsultarUsuario = new javax.swing.JTextField();
+        txtNomeUsuario = new javax.swing.JTextField();
         btnVoltar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        txtConsultarLivro = new javax.swing.JTextField();
+        txtNomeLivro = new javax.swing.JTextField();
         btnConsultar1 = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -54,6 +55,11 @@ public class EmprestarLivroView extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         dataAtual = new javax.swing.JTextField();
         CalculoDevolucao = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        txtConsultarUsuario = new javax.swing.JTextField();
+        txtConsultarLivro = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("CONSULTA DE USUARIO");
@@ -65,9 +71,9 @@ public class EmprestarLivroView extends javax.swing.JFrame {
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("Data Devoluçao");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 230, 90, 27));
-        getContentPane().add(txtConsultarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, 230, 27));
+        jLabel1.setText("Devoluçao");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 210, 90, 27));
+        getContentPane().add(txtNomeUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, 230, 27));
 
         btnVoltar.setText("Voltar");
         btnVoltar.addActionListener(new java.awt.event.ActionListener() {
@@ -77,15 +83,15 @@ public class EmprestarLivroView extends javax.swing.JFrame {
         });
         getContentPane().add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 320, -1, -1));
 
-        jLabel2.setText("Título");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, 63, 27));
+        jLabel2.setText("Código Livro");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 100, 70, 27));
 
-        txtConsultarLivro.addActionListener(new java.awt.event.ActionListener() {
+        txtNomeLivro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtConsultarLivroActionPerformed(evt);
+                txtNomeLivroActionPerformed(evt);
             }
         });
-        getContentPane().add(txtConsultarLivro, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 230, 27));
+        getContentPane().add(txtNomeLivro, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, 230, 27));
 
         btnConsultar1.setText("Consultar");
         btnConsultar1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -93,41 +99,41 @@ public class EmprestarLivroView extends javax.swing.JFrame {
                 btnConsultar1MouseClicked(evt);
             }
         });
-        getContentPane().add(btnConsultar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, -1, -1));
+        getContentPane().add(btnConsultar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 170, -1, -1));
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 100, -1));
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 100, 100, -1));
 
-        jLabel3.setText("Nome");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 48, 63, 27));
+        jLabel3.setText("Nome Livro");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 63, 27));
 
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 100, -1));
+        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 30, 100, -1));
 
         jLabel4.setText("Tipo");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 63, 27));
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 230, 80, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 30, 63, 27));
+        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 210, 80, -1));
 
         jLabel5.setText("Quantidade");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 63, 27));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 100, 63, 27));
 
         jLabel6.setText("Data Atual");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 63, 27));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 63, 27));
 
         dataAtual.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dataAtualActionPerformed(evt);
             }
         });
-        getContentPane().add(dataAtual, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, 80, -1));
+        getContentPane().add(dataAtual, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 210, 80, -1));
 
         CalculoDevolucao.setText("Calcular");
         CalculoDevolucao.addActionListener(new java.awt.event.ActionListener() {
@@ -135,7 +141,29 @@ public class EmprestarLivroView extends javax.swing.JFrame {
                 CalculoDevolucaoActionPerformed(evt);
             }
         });
-        getContentPane().add(CalculoDevolucao, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 270, -1, -1));
+        getContentPane().add(CalculoDevolucao, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 240, -1, -1));
+
+        jLabel7.setText("Código");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 63, 27));
+        getContentPane().add(txtConsultarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, 40, 27));
+
+        txtConsultarLivro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtConsultarLivroActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtConsultarLivro, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, 50, 27));
+
+        jLabel8.setText("Nome");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, 63, 27));
+
+        jButton1.setText("Emprestar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 270, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -155,33 +183,39 @@ public class EmprestarLivroView extends javax.swing.JFrame {
         Usuario usuarioEmprestimo = new Usuario();
         Livro livroEmprestimo = new Livro();
         
-        livroEmprestimo.setTitulo(txtConsultarLivro.getText());
-        usuarioEmprestimo.setNome(txtConsultarUsuario.getText());
+        livroEmprestimo.setCodigo(Integer.parseInt(txtConsultarLivro.getText()));
+        usuarioEmprestimo.setCodigo(Integer.parseInt(txtConsultarUsuario.getText()));
         
         
        try {
-            livroEmprestimo = livroControle.consultarTitulo(livroEmprestimo);
-            usuarioEmprestimo = usuarioControle.consultarNome(usuarioEmprestimo);
+            livroEmprestimo = livroControle.consultarCodigo(livroEmprestimo);
+            usuarioEmprestimo = usuarioControle.consultarCodigo(usuarioEmprestimo);
         } catch (SQLException ex) {
-            Logger.getLogger(LivroExcluirView.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EmprestarLivroView.class.getName()).log(Level.SEVERE, null, ex);
         }
+       
+        txtNomeUsuario.setText(usuarioEmprestimo.getNome());
+        txtNomeLivro.setText(livroEmprestimo.getTitulo());
+        jTextField1.setText(String.valueOf(livroEmprestimo.getQuantidade()));
        
         if(usuarioEmprestimo.getTipo() == 1 ){
             jTextField2.setText("Professor");
         }else if(usuarioEmprestimo.getTipo() == 2){
             jTextField2.setText("Aluno");
-        }else{
+        }else if(usuarioEmprestimo.getTipo() == 3){
             jTextField2.setText("Funcionário");
+        }else{
+             jTextField2.setText("null");
         }
-       
-        jTextField1.setText(String.valueOf(livroEmprestimo.getQuantidade()));
+        
+
         
         
     }//GEN-LAST:event_btnConsultar1MouseClicked
 
-    private void txtConsultarLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtConsultarLivroActionPerformed
+    private void txtNomeLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeLivroActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtConsultarLivroActionPerformed
+    }//GEN-LAST:event_txtNomeLivroActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
@@ -199,20 +233,32 @@ public class EmprestarLivroView extends javax.swing.JFrame {
         UsuarioControle usuarioControle = new UsuarioControle();
         Usuario usuarioEmprestimo = new Usuario(); 
         Util devolucao = new Util();
+        String dataDevolucao = null;
+        Date dataSaida = null;
+        
+        usuarioEmprestimo.setCodigo(Integer.parseInt(txtConsultarUsuario.getText()));
         
         try {
-            usuarioEmprestimo = usuarioControle.consultarNome(usuarioEmprestimo);
-            Date dataSaida = devolucao.stringToDate(dataAtual.getText());
-        
-            Date dataDevolucao = devolucao.calcularDevolucao(dataSaida,usuarioEmprestimo.getTipo());
+            usuarioEmprestimo = usuarioControle.consultarCodigo(usuarioEmprestimo);
+            dataSaida = devolucao.stringToDate(dataAtual.getText());
+            dataDevolucao = devolucao.calcularDevolucao(dataSaida,usuarioEmprestimo.getTipo());
         } catch (SQLException ex) {
             Logger.getLogger(LivroExcluirView.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
+            Logger.getLogger(EmprestarLivroView.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
-
-        jTextField3.setText(dataDevolucao.toString());
+        
+        jTextField3.setText(dataDevolucao);
                 
     }//GEN-LAST:event_CalculoDevolucaoActionPerformed
+
+    private void txtConsultarLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtConsultarLivroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtConsultarLivroActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -227,16 +273,21 @@ public class EmprestarLivroView extends javax.swing.JFrame {
     private javax.swing.JButton btnConsultar1;
     private javax.swing.JButton btnVoltar;
     private javax.swing.JTextField dataAtual;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField txtConsultarLivro;
     private javax.swing.JTextField txtConsultarUsuario;
+    private javax.swing.JTextField txtNomeLivro;
+    private javax.swing.JTextField txtNomeUsuario;
     // End of variables declaration//GEN-END:variables
 }
