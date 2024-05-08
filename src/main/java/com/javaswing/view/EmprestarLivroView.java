@@ -102,6 +102,11 @@ public class EmprestarLivroView extends javax.swing.JFrame {
                 btnConsultar1MouseClicked(evt);
             }
         });
+        btnConsultar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultar1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnConsultar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 170, -1, -1));
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -275,16 +280,17 @@ public class EmprestarLivroView extends javax.swing.JFrame {
         int codUsuario = Integer.parseInt(txtConsultarUsuario.getText());
         int codLivro = Integer.parseInt(txtConsultarLivro.getText());
         String dataSaida = dataAtual.getText();
+        String dataDevolucao = jTextField3.getText();
         Date saidaDate = null;
         try {
             saidaDate = util.stringToDate(dataSaida);
         } catch (ParseException ex) {
             Logger.getLogger(EmprestarLivroView.class.getName()).log(Level.SEVERE, null, ex);
         }
+        /*
         int status = usuarioEmprestimo.getTipo();
-        
         String dataDevolucao = util.calcularDevolucao(saidaDate, status);
-        
+        */
 
         
         emprestimo.setCodUsuario(codUsuario);
@@ -305,6 +311,10 @@ public class EmprestarLivroView extends javax.swing.JFrame {
                                               
            
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnConsultar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultar1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnConsultar1ActionPerformed
 
     /**
      * @param args the command line arguments
