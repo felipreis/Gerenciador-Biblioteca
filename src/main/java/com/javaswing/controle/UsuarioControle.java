@@ -36,6 +36,11 @@ public class UsuarioControle {
         return usuarioService.consultarCodigo(usuario);
     }
      
+     public Usuario consultarNome(Usuario usuario) throws SQLException {
+        UsuarioService usuarioService = new UsuarioService();
+        return usuarioService.consultarNome(usuario);
+    }
+     
      public boolean atualizar(Usuario usuario) throws SQLException{
          UsuarioService usuarioService = new UsuarioService();
          return usuarioService.atualizar(usuario);

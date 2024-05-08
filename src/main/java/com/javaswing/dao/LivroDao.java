@@ -90,6 +90,29 @@ public class LivroDao {
         return livroRetorno;
     }
     
+     public Livro consultarTitulo(Livro livro) throws SQLException {
+        
+        Livro livroRetorno = new Livro();   
+        Conexao conexao = new Conexao();
+        Connection connection = conexao.conectar();
+        String query = "SELECT * FROM livro where titulo = " + livro.getTitulo();
+        Statement statement =  connection.createStatement();
+        ResultSet retorno =  statement.executeQuery(query);
+        
+          
+        while (retorno.next()){
+              
+                livroRetorno.setCodigo(retorno.getInt("codigo"));
+                livroRetorno.setTitulo(retorno.getString("Titulo"));
+                livroRetorno.setAutor(retorno.getString("Autor"));
+                livroRetorno.setEditora(retorno.getString("Editora"));
+                livroRetorno.setQuantidade(retorno.getInt("Quantidade"));
+                
+        }
+        
+        return livroRetorno;
+    }
+    
     public boolean atualizar(Livro livro) throws SQLException {
         Conexao conexao = new Conexao();
         Connection connection = conexao.conectar();

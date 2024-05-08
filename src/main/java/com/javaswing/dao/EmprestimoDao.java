@@ -24,9 +24,7 @@ public class EmprestimoDao  {
     public boolean emprestarLivro(Emprestimo emprestimo) {
         
         Conexao conexao = new Conexao();
-        Connection connection = conexao.conectar();
-        LocalDate dataAtual = LocalDate.now();
-        LocalDate dataDevolucao = null;
+        Connection connection = conexao.conectar();     
                 
         String query = "INSERT INTO emprestimo (usuario,livro,saida,devolucao,status) values (" +
                 "'" +   emprestimo.getCodUsuario()  + "'," +

@@ -103,6 +103,29 @@ public class UsuarioDao {
         return usuarioRetorno;
     }
      
+       public Usuario consultarNome(Usuario usuario) throws SQLException {
+        
+        Usuario usuarioRetorno = new Usuario();   
+        Conexao conexao = new Conexao();
+        Connection connection = conexao.conectar();
+        String query = "SELECT * FROM usuario where nome = " + usuario.getNome();
+        Statement statement =  connection.createStatement();
+        ResultSet retorno =  statement.executeQuery(query);
+        
+          
+        while (retorno.next()){
+              
+                usuarioRetorno.setCodigo(retorno.getInt("codigo"));
+                usuarioRetorno.setNome(retorno.getString("Nome"));
+                usuarioRetorno.setTelefone(retorno.getString("Telefone"));
+                usuarioRetorno.setCidade(retorno.getString("Cidade"));
+                usuarioRetorno.setTipo(retorno.getInt("Tipo"));
+                
+        }
+        
+        return usuarioRetorno;
+    }
+     
      
      public boolean atualizar(Usuario usuario) throws SQLException {
         Conexao conexao = new Conexao();

@@ -30,6 +30,12 @@ public class LivroService {
         return livroDao.consultarCodigo(livro);
     }
     
+     public Livro consultarTitulo(Livro livro) throws SQLException{
+        LivroDao livroDao = new LivroDao();
+        return livroDao.consultarTitulo(livro);
+    }
+    
+    
     public boolean excluir(Livro livro) throws SQLException{
         LivroDao livroDao = new LivroDao();
         return livroDao.excluir(livro);
