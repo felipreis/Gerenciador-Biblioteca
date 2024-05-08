@@ -24,9 +24,28 @@ public class EmprestimoDao  {
 
   
     public boolean emprestarLivro(Emprestimo emprestimo) {
+        Conexao conexao = new Conexao();
+        Connection connection = conexao.conectar();
+                
+        String query = "INSERT INTO emprestimo (usuario,livro,saida,devolucao) values (" +
+                "'" +   emprestimo.getCodUsuario()  + "'," +
+                "'" +   emprestimo.getCodLivro()   + "'," +
+                "'" +   emprestimo.getDataAtualString() + "'," +
+                emprestimo.getDataDevolucaoString()+ ")";
         
         
-        return false;
+        
+        try {
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+            conexao.desconectar(connection);
+            return true;
+        }catch (SQLException ex) {
+            System.out.print(ex.initCause(ex));
+            return false;
+        } 
+        
+       
         
         
     }

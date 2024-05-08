@@ -18,7 +18,26 @@ public class Emprestimo {
     private int codLivro;
     private Date dataAtual;
     private Date dataDevolucao;
+    private String dataAtualString;
+    private String dataDevolucaoString;
     private String status;
+
+    public String getDataAtualString() {
+        return dataAtualString;
+    }
+
+    public void setDataAtualString(String dataAtualString) {
+        this.dataAtualString = dataAtualString;
+    }
+
+    public String getDataDevolucaoString() {
+        return dataDevolucaoString;
+    }
+
+    public void setDataDevolucaoString(String dataDevolucaoString) {
+        this.dataDevolucaoString = dataDevolucaoString;
+    }
+    
 
     public String getStatus() {
         return status;

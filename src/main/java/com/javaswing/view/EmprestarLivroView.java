@@ -260,53 +260,50 @@ public class EmprestarLivroView extends javax.swing.JFrame {
     }//GEN-LAST:event_txtConsultarLivroActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        EmprestimoControle emprestimoControle = new EmprestimoControle();
+        Emprestimo emprestimo = new Emprestimo();
+        Util util = new Util();
         
+        UsuarioControle usuarioControle = new UsuarioControle();
+        Usuario usuarioEmprestimo = new Usuario();
+        try {
+            usuarioEmprestimo = usuarioControle.consultarCodigo(usuarioEmprestimo);
+        } catch (SQLException ex) {
+            Logger.getLogger(EmprestarLivroView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        int codUsuario = Integer.parseInt(txtConsultarUsuario.getText());
+        int codLivro = Integer.parseInt(txtConsultarLivro.getText());
+        String dataSaida = dataAtual.getText();
+        Date saidaDate = null;
+        try {
+            saidaDate = util.stringToDate(dataSaida);
+        } catch (ParseException ex) {
+            Logger.getLogger(EmprestarLivroView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        int status = usuarioEmprestimo.getTipo();
+        
+        String dataDevolucao = util.calcularDevolucao(saidaDate, status);
+        
+
+        
+        emprestimo.setCodUsuario(codUsuario);
+        emprestimo.setCodLivro(codLivro);
+        emprestimo.setDataAtualString(dataSaida);
+        emprestimo.setDataDevolucaoString(dataDevolucao);
+        
+        
+        try {
+            if(emprestimoControle.emprestarLivro(emprestimo) == true){
+                JOptionPane.showMessageDialog(null,"Livro emprestado com sucesso!","ATENÇÃO",JOptionPane.INFORMATION_MESSAGE);
+            }else{
+                JOptionPane.showMessageDialog(null,"ERRO; Livro não emprestado !","ATENÇÃO",JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioCadastrarView.class.getName()).log(Level.SEVERE, null, ex);
+        }
                                               
-            
-            EmprestimoControle emprestimoControle = new EmprestimoControle();
-            LivroControle livroControle = new LivroControle();
-            UsuarioControle usuarioControle = new UsuarioControle();
-            
-            
-            Emprestimo emprestimo = new Emprestimo();
-            Usuario usuarioEmprestimo = new Usuario();
-            Util util = new Util();
-            Livro livroEmprestimo = new Livro();
-            Date dataSaida = null;
-            Date devolucao= null;
-            //String status = "aberto";
-            
-            livroEmprestimo.setCodigo(Integer.parseInt(txtConsultarLivro.getText()));
-            usuarioEmprestimo.setCodigo(Integer.parseInt(txtConsultarUsuario.getText()));
-            
-            try {
-                dataSaida = util.stringToDate(dataAtual.getText());
-                devolucao = util.stringToDate(jTextField3.getText());
-                livroEmprestimo = livroControle.consultarCodigo(livroEmprestimo);
-                usuarioEmprestimo = usuarioControle.consultarCodigo(usuarioEmprestimo);
-                
-            } catch (SQLException ex) {
-                Logger.getLogger(EmprestarLivroView.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ParseException ex) {
-                Logger.getLogger(EmprestarLivroView.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
-            emprestimo.setCodUsuario(usuarioEmprestimo.getCodigo());
-            emprestimo.setCodLivro(livroEmprestimo.getCodigo());
-            emprestimo.setDataAtual(dataSaida);
-            emprestimo.setDataDevolucao(devolucao);
-            //emprestimo.setStatus(status);
-            
-            try {
-                if(emprestimoControle.emprestarLivro(emprestimo) == true){
-                    JOptionPane.showMessageDialog(null,"Livro emprestado com sucesso!","ATENÇÃO",JOptionPane.INFORMATION_MESSAGE);
-                }else{
-                    JOptionPane.showMessageDialog(null,"ERRO; Livro não Emprestado!","ATENÇÃO",JOptionPane.INFORMATION_MESSAGE);
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(EmprestarLivroView.class.getName()).log(Level.SEVERE, null, ex);
-            }
- 
+           
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
