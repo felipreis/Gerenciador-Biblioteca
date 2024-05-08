@@ -4,8 +4,10 @@
  */
 package com.javaswing.view;
 
+import com.javaswing.controle.EmprestimoControle;
 import com.javaswing.controle.LivroControle;
 import com.javaswing.controle.UsuarioControle;
+import com.javaswing.modelo.Emprestimo;
 import com.javaswing.modelo.Livro;
 import com.javaswing.modelo.Usuario;
 import com.javaswing.service.Util;
@@ -15,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 /**
  *
@@ -257,7 +260,52 @@ public class EmprestarLivroView extends javax.swing.JFrame {
     }//GEN-LAST:event_txtConsultarLivroActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        
+                                              
+            
+            EmprestimoControle emprestimoControle = new EmprestimoControle();
+            LivroControle livroControle = new LivroControle();
+            UsuarioControle usuarioControle = new UsuarioControle();
+            
+            
+            Emprestimo emprestimo = new Emprestimo();
+            Usuario usuarioEmprestimo = new Usuario();
+            Util util = new Util();
+            Livro livroEmprestimo = new Livro();
+            Date dataSaida = null;
+            Date devolucao= null;
+            
+            livroEmprestimo.setCodigo(Integer.parseInt(txtConsultarLivro.getText()));
+            usuarioEmprestimo.setCodigo(Integer.parseInt(txtConsultarUsuario.getText()));
+            
+            try {
+                dataSaida = util.stringToDate(dataAtual.getText());
+                devolucao = util.stringToDate(jTextField3.getText());
+                livroEmprestimo = livroControle.consultarCodigo(livroEmprestimo);
+                usuarioEmprestimo = usuarioControle.consultarCodigo(usuarioEmprestimo);
+                
+            } catch (SQLException ex) {
+                Logger.getLogger(EmprestarLivroView.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ParseException ex) {
+                Logger.getLogger(EmprestarLivroView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            emprestimo.setCodUsuario(usuarioEmprestimo.getCodigo());
+            emprestimo.setCodLivro(livroEmprestimo.getCodigo());
+            emprestimo.setDataAtual(dataSaida);
+            emprestimo.setDataDevolucao(devolucao);
+            emprestimo.setStatus("aberto");
+            
+            try {
+                if(emprestimoControle.emprestarLivro(emprestimo) == true){
+                    JOptionPane.showMessageDialog(null,"Livro emprestado com sucesso!","ATENÇÃO",JOptionPane.INFORMATION_MESSAGE);
+                }else{
+                    JOptionPane.showMessageDialog(null,"ERRO; Livro não Emprestado!","ATENÇÃO",JOptionPane.INFORMATION_MESSAGE);
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(EmprestarLivroView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+ 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

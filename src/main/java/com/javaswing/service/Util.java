@@ -4,9 +4,10 @@
  */
 package com.javaswing.service;
 
-import java.text.Format;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -17,23 +18,28 @@ public class Util {
     
     
     public Date stringToDate(String data) throws ParseException{
-        SimpleDateFormat format = new SimpleDateFormat("dd/MM/YYYY");
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
         Date dataF = format.parse(data);
         return dataF;
     }
     
     
-    public Date calcularDevolucao(Date dataSaida, int status){
-        Date dataEntrega;
+    public String calcularDevolucao(Date dataSaida, int status){
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(dataSaida);
         
         if(status == 1){
-          dataEntrega = ;
+          calendar.add(Calendar.DAY_OF_MONTH,14);
         }else if( status == 2){
-           dataEntrega = dataSaida;
+          calendar.add(Calendar.DAY_OF_MONTH,7);
         }else if (status == 3){
-            dataEntrega = dataSaida;
+            calendar.add(Calendar.DAY_OF_MONTH,21);
+        }else{
+            System.out.println("ERRO");
         }
-        return dataEntrega;
+        
+        return sdf.format(calendar.getTime());
     }
     
 

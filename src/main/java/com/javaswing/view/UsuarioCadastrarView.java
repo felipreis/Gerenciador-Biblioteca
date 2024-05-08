@@ -80,7 +80,7 @@ public class UsuarioCadastrarView extends javax.swing.JFrame {
 
         lblEditora1.setText("Tipo");
 
-        lblEditora2.setText("1-USUARIO");
+        lblEditora2.setText("1-PROFESSOR");
 
         lblEditora3.setText("2-ALUNO");
 
@@ -117,8 +117,8 @@ public class UsuarioCadastrarView extends javax.swing.JFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(txtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(lblEditora2, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(66, 66, 66)
+                                    .addComponent(lblEditora2, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(51, 51, 51)
                                     .addComponent(lblEditora3, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(38, 38, 38)
                                     .addComponent(lblEditora4, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))))))

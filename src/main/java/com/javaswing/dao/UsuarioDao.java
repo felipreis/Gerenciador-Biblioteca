@@ -97,6 +97,7 @@ public class UsuarioDao {
                 usuarioRetorno.setNome(retorno.getString("Nome"));
                 usuarioRetorno.setTelefone(retorno.getString("Telefone"));
                 usuarioRetorno.setCidade(retorno.getString("Cidade"));
+                usuarioRetorno.setTipo(retorno.getInt("tipo"));
                 
         }
         

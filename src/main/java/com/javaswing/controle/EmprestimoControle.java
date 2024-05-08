@@ -4,10 +4,19 @@
  */
 package com.javaswing.controle;
 
+import com.javaswing.dao.EmprestimoDao;
+import com.javaswing.modelo.Emprestimo;
+import com.javaswing.service.EmprestimoService;
+import java.sql.SQLException;
+
 /**
  *
  * @author felip
  */
 public class EmprestimoControle {
     
+     public boolean emprestarLivro(Emprestimo emprestimo) throws SQLException{
+        EmprestimoService emprestimoService = new EmprestimoService();
+        return emprestimoService.emprestarLivro(emprestimo);
+    }
 }
