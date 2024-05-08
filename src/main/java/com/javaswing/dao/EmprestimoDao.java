@@ -11,7 +11,9 @@ import com.javaswing.modelo.Usuario;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -23,24 +25,10 @@ public class EmprestimoDao  {
   
     public boolean emprestarLivro(Emprestimo emprestimo) {
         
-        Conexao conexao = new Conexao();
-        Connection connection = conexao.conectar();     
-                
-        String query = "INSERT INTO emprestimo (usuario,livro,saida,devolucao,status) values (" +
-                "'" +   emprestimo.getCodUsuario()  + "'," +
-                "'" +   emprestimo.getCodLivro()   + "'," +
-                "'" +   emprestimo.getDataAtual()   + "'," +
-                "'" +   emprestimo.getDataDevolucao() + "'," +
-                emprestimo.getStatus()+ ")";
-        try {
-            Statement statement = connection.createStatement();
-            statement.execute(query);
-            conexao.desconectar(connection);
-            return true;
-        }catch (SQLException ex) {
-            System.out.print(ex.initCause(ex));
-            return false;
-        } 
+        
+        return false;
+        
+        
     }
 
     

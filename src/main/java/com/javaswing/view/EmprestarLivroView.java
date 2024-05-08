@@ -274,6 +274,7 @@ public class EmprestarLivroView extends javax.swing.JFrame {
             Livro livroEmprestimo = new Livro();
             Date dataSaida = null;
             Date devolucao= null;
+            //String status = "aberto";
             
             livroEmprestimo.setCodigo(Integer.parseInt(txtConsultarLivro.getText()));
             usuarioEmprestimo.setCodigo(Integer.parseInt(txtConsultarUsuario.getText()));
@@ -294,7 +295,7 @@ public class EmprestarLivroView extends javax.swing.JFrame {
             emprestimo.setCodLivro(livroEmprestimo.getCodigo());
             emprestimo.setDataAtual(dataSaida);
             emprestimo.setDataDevolucao(devolucao);
-            emprestimo.setStatus("aberto");
+            //emprestimo.setStatus(status);
             
             try {
                 if(emprestimoControle.emprestarLivro(emprestimo) == true){

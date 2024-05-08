@@ -60,6 +60,14 @@ public class Emprestimo {
         this.dataDevolucao = dataDevolucao;
     }
     
+    public String dataDevolucaoString(){
+        return this.dataDevolucao.toString();
+    }
+    
+    public String dataAtualString(){
+        return this.dataAtual.toString();
+    }
+    
     
     
 }
