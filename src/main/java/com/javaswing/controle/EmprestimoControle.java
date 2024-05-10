@@ -19,4 +19,9 @@ public class EmprestimoControle {
         EmprestimoService emprestimoService = new EmprestimoService();
         return emprestimoService.emprestarLivro(emprestimo);
     }
+     
+    public Emprestimo consultarEmprestimo(Emprestimo emprestimo) throws SQLException{
+        EmprestimoService emprestimoService = new EmprestimoService();
+        return emprestimoService.consultarEmprestimo(emprestimo);
+    }
 }
