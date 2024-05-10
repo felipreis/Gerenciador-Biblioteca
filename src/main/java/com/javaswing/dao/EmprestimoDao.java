@@ -9,6 +9,7 @@ import com.javaswing.modelo.Emprestimo;
 import com.javaswing.modelo.Livro;
 import com.javaswing.modelo.Usuario;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
@@ -47,6 +48,28 @@ public class EmprestimoDao  {
         
        
         
+        
+    }
+    
+    public Emprestimo consultarEmprestimo (Emprestimo emprestimo) throws SQLException{
+        Emprestimo emprestimoRetorno = new Emprestimo();
+        Conexao conexao = new Conexao();
+        Connection connection = conexao.conectar();
+        String query = "SELECT * FROM emprestimo where usuario = " + emprestimo.getCodUsuario();
+        Statement statement =  connection.createStatement();
+        ResultSet retorno =  statement.executeQuery(query);
+        
+         while (retorno.next()){
+              
+                emprestimoRetorno.setCodUsuario(retorno.getInt("usuario"));
+                emprestimoRetorno.setCodLivro(retorno.getInt("livro"));
+                emprestimoRetorno.setDataAtualString(retorno.getString("saida"));
+                emprestimoRetorno.setDataDevolucaoString(retorno.getString("devolucao"));
+                emprestimoRetorno.setStatus(retorno.getString("status"));
+                
+        }
+        
+        return emprestimoRetorno;
         
     }
 
