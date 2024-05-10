@@ -24,4 +24,9 @@ public class EmprestimoControle {
         EmprestimoService emprestimoService = new EmprestimoService();
         return emprestimoService.consultarEmprestimo(emprestimo);
     }
+    
+    public boolean devolverLivro(Emprestimo emprestimo) throws SQLException{
+        EmprestimoService emprestimoService = new EmprestimoService();
+        return emprestimoService.devolverLivro(emprestimo);
+    }
 }

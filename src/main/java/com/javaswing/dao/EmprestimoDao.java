@@ -74,8 +74,24 @@ public class EmprestimoDao  {
     }
 
     
-    public boolean devolverLivro(Usuario usuario, Livro livro) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public boolean devolverLivro(Emprestimo emprestimo) {
+       Conexao conexao = new Conexao();
+        Connection connection = conexao.conectar();
+        boolean retorno = false;
+        String query = "UPDATE EMPRESTIMO SET "
+                + "titulo = " + "'" +   emprestimo.getStatus()  + "'" 
+                + " where codigo = " + emprestimo.getCodUsuario();
+        
+        try {
+            Statement statement = connection.createStatement();
+            retorno =  statement.execute(query);
+        }catch (SQLException ex) {
+            retorno = true;
+        } finally {
+            conexao.desconectar(connection);
+        }
+        
+        return retorno;
     }
 
     

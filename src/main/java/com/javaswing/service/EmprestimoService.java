@@ -23,4 +23,9 @@ public class EmprestimoService {
         EmprestimoDao emprestimoDao = new EmprestimoDao();
         return emprestimoDao.consultarEmprestimo(emprestimo);
     }
+    
+    public boolean devolverLivro(Emprestimo emprestimo) throws SQLException{
+        EmprestimoDao emprestimoDao = new EmprestimoDao();
+        return emprestimoDao.devolverLivro(emprestimo);
+    }
 }
