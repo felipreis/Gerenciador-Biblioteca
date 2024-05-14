@@ -271,8 +271,15 @@ public class EmprestarLivroView extends javax.swing.JFrame {
         
         UsuarioControle usuarioControle = new UsuarioControle();
         Usuario usuarioEmprestimo = new Usuario();
+        
+        LivroControle livroControle = new LivroControle();
+        Livro livroEmprestimo = new Livro();
+        
+        livroEmprestimo.setCodigo(Integer.parseInt(txtConsultarLivro.getText()));
+        
         try {
             usuarioEmprestimo = usuarioControle.consultarCodigo(usuarioEmprestimo);
+            livroEmprestimo = livroControle.consultarCodigo(livroEmprestimo);
         } catch (SQLException ex) {
             Logger.getLogger(EmprestarLivroView.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -308,7 +315,14 @@ public class EmprestarLivroView extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioCadastrarView.class.getName()).log(Level.SEVERE, null, ex);
         }
-                                              
+        
+        Integer novaQuantidade = livroEmprestimo.getQuantidade()-1;
+        livroEmprestimo.setQuantidade(novaQuantidade);
+        try {
+            livroControle.atualizar(livroEmprestimo);
+        } catch (SQLException ex) {
+            Logger.getLogger(EmprestarLivroView.class.getName()).log(Level.SEVERE, null, ex);
+        }
            
     }//GEN-LAST:event_jButton1ActionPerformed
 
